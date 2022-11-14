@@ -1,4 +1,5 @@
-import styled from "styled-components";
+  import styled from "styled-components";
+import Search from "./components/Search"
 
 const StyledMenu = styled.header`
   display: flex;
@@ -29,7 +30,9 @@ export default function Menu() {
     <StyledMenu>
       <div>
         <Logo />
-      </div>
+         </div>
+        <Search />
+     
     </StyledMenu>
   );
 }

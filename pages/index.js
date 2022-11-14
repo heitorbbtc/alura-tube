@@ -1,11 +1,16 @@
 import config from "./config.json";
 import styled from "styled-components";
 import { CSSReset } from "../src/components/CSSReset";
+import Menu from "../src/components/Menu/Index";
 import { StyledTimeline } from "../src/components/Timeline";
 
 function HomePage() {
-  //const mensagem = "Bem vindo ao AluraTube!"
-  const estilosDaHomePage = { /*backgroundColor: "red"*/ };
+ 
+  const estilosDaHomePage = {
+
+  };
+
+  const valorDoFiltro = "Angular"
 
 
   return (
@@ -17,9 +22,9 @@ function HomePage() {
                 flex: 1,
                 // backgroundColor: "red",
             }}>
-      <menu />
+      <Menu />
       <Header />
-      <Timeline playlists={config.playlists} />
+      <Timeline searchValue={valorDoFiltro} playlists={config.playlists} />
     </div>
     </>
       );
@@ -27,13 +32,7 @@ function HomePage() {
 
 export default HomePage;
 
-function Menu() {
-  return (
-      <div>
-        Menu
-      </div>
-    );
-}
+
 
 const StyledHeader = styled.div`
   img {
@@ -46,14 +45,14 @@ const StyledHeader = styled.div`
     display: flex;
     align-itens: center;
     width: 100%;
-    padding: 16% 32px;
+    padding: 2% 32px;
     gap: 16px;
   }
 `;
 function Header() {
   return (
     <StyledHeader>
-      {<img src="banner" />}
+      {/*<img src="banner" />*/}
       <section className="user-info">
         <img src={`https://github.com/${config.github}.png`} />
         <div>
@@ -65,7 +64,7 @@ function Header() {
   );
 }
 
-function Timeline(propriedades) {
+function Timeline({searchValue, ...propriedades}) {
   console.log("Dentro do componente", propriedades.playlists);
   const playlistNames = Object.keys(propriedades.playlists);
 
@@ -79,7 +78,9 @@ function Timeline(propriedades) {
           <section>
             <h2>{playlistName}</h2>
             <div>
-              {videos.map((video) => {
+              {videos.filter((video) => {
+                return video.title.includes(searchValue)
+              }).map((video) => {
                 return (
                   <a href={video.url}>
                     <img src={video.thumb} />
