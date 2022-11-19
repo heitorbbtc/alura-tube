@@ -54,7 +54,7 @@ export default function DarkModeSwitch() {
             >
                 <span>🌙</span>
                 <span>☀️</span>
-            </label>
+            </label>  
         </StyledSwitch>
     )
 }
